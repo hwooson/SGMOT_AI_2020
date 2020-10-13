@@ -125,7 +125,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 try:
-    with open(os.path.join(BASE_DIR, 'config/env/google_credential.json')) as fp:
-        GOOGLE_CREDENTIAL, _ = load_credentials_from_file(json.load(fp))
+    GOOGLE_CREDENTIAL, _ = load_credentials_from_file(os.path.join(BASE_DIR, 'config/env/google_credential.json'))
 except FileNotFoundError:
     GOOGLE_CREDENTIAL = None
