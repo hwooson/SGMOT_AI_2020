@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import json
 import os
 from pathlib import Path
+
+from google.auth import load_credentials_from_file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,3 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
+
+try:
+    with open(os.path.join(BASE_DIR, 'config/env/google_credential.json')) as fp:
+        GOOGLE_CREDENTIAL, _ = load_credentials_from_file(json.load(fp))
+except FileNotFoundError:
+    GOOGLE_CREDENTIAL = None
