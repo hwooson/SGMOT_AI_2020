@@ -52,12 +52,12 @@
       {% csrf_token %}
       <div class="form-group">
         <label>원문</label>
-        <textarea class="form-control" rows="4">I am a student who studies AI at SGMOT.</textarea>
+        <textarea class="form-control" rows="4" name="source_text">{{ source_text|default:'' }}</textarea>
       </div>
       <div class="mb-5"><button type="submit" class="btn btn-primary">번역</button></div>
       <div class="form-group">
         <label>번역문</label>
-        <textarea class="form-control" rows="4" readonly>저는 SGMOT에서 AI를 공부하는 학생입니다.</textarea>
+        <textarea class="form-control" rows="4" readonly>{{ translated_text|default:'' }}</textarea>
       </div>
     </form>
   </main>
