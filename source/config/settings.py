@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 from google.auth import load_credentials_from_file
+from google.auth.exceptions import DefaultCredentialsError
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,5 +127,5 @@ STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 try:
     GOOGLE_CREDENTIAL, _ = load_credentials_from_file(os.path.join(BASE_DIR, 'config/env/google_credential.json'))
-except FileNotFoundError:
+except DefaultCredentialsError:
     GOOGLE_CREDENTIAL = None
